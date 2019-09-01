@@ -1,9 +1,15 @@
 #include "AssetLoader.hpp"
+#include "SDL2/SDL.h"
 #define cJSON_GetObjectV(par1, par2) cJSON_GetObjectItemCaseSensitive(par1, par2)
 
 namespace AssetLoader {
 Camera MainCamera;
 std::vector<SDL_Surface*> Surfaces;
+
+//to get this file compile
+SDL_PixelFormat* format;
+SDL_Surface *loadOptimizedSurface(const char *path, SDL_PixelFormat *format);
+
 
 bool LoadAssets() {
     
@@ -25,22 +31,21 @@ bool loadLevelAssets(std::string levelName) {
     dataContainer = cJSON_GetObjectV(jsonData, "assets");
     cJSON_ArrayForEach(tempObj, dataContainer) { //Iterate over dataContainer like iterating array where current object is tempObj
         /* TODO Parse Assets */
-        switch(cJSON_GetObjectV(tempObj, "kind")->valuestring) {
-            case "sprite":
-                /*TODO: Create a Sprite class and store them instead */
-                const char* name = cJSON_GetObjectV(tempObj, "name")->valuestring;
-                SDL_Surface* surface = loadOptimizedSurface((/*TODO: Image Path*/).c_str(), format);
-                Surfaces.push_back(surface);
-                break;
-            case "model":
-                break;
+        const char* str = cJSON_GetObjectV(tempObj, "kind")->valuestring;
+        if (strcmp(str, "sprite")) {
+            /*TODO: Create a Sprite class and store them instead */
+            const char* name = cJSON_GetObjectV(tempObj, "name")->valuestring;
+            SDL_Surface* surface = loadOptimizedSurface(""/*TODO: Image Path*/, format);
+            Surfaces.push_back(surface);
+        } else if (strcmp(str, "model")) {
+            //
         }
     }
     dataContainer = cJSON_GetObjectV(jsonData, "objects");
     cJSON_ArrayForEach(tempObj, dataContainer) {
-        switch(cJSON_GetObjectV(tempObj, "kind")->valuestring) {
-            case "":
-                break;
+        const char* str = cJSON_GetObjectV(tempObj, "kind")->valuestring;
+        if (strcmp(str, str)) {
+
         }
     }
     cJSON_Delete(jsonData);

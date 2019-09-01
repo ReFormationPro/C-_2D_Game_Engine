@@ -1,5 +1,5 @@
 #include "main.hpp"
-#include "cjson/cJSON.h"
+#include "cJSON/cJSON.h"
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include "AssetLoader.hpp"
