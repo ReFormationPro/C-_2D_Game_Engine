@@ -23,7 +23,7 @@ bool Initialize() {
     gScreenSurface = SDL_GetWindowSurface(gWindow);
     return true;
 }
-
+extern void test();
 int main(int argc, char **argv) {
     if (!Initialize() || !AssetLoader::LoadAssets()) {
         printf("Initialize or Asset Loading Error\n");
@@ -31,6 +31,7 @@ int main(int argc, char **argv) {
     }
     bool loop = true;
     SDL_Event e;
+    test();
     while (loop) {
         while (SDL_PollEvent(&e) != 0) {
             if (e.type == SDL_QUIT) loop = 0;

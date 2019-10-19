@@ -1,5 +1,7 @@
+#pragma once
+class Entity;
 class IGraphicsComponent {
     public:
         virtual ~IGraphicsComponent(){}
-        virtual void update() = 0;
+        virtual void update(Position&) = 0;
 };

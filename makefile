@@ -1,7 +1,7 @@
 CC=g++
-CFLAGS=-Wall -ansi -pedantic-errors
+CFLAGS=-Wall -pedantic-errors -std=gnu++11#-ansi
 LDFLAGS=-lSDL2 -lSDL2_image -lm
-SOURCES=main.cpp cJSON/cJSON.c Entity.cpp AssetLoader.cpp
+SOURCES=test.cpp main.cpp cJSON/cJSON.c Entity.cpp AssetLoader.cpp Components/*.cpp
 
 engine: $(SOURCES)
 	$(CC) $(SOURCES) $(CFLAGS) $(LDFLAGS) -o engine.exe
